@@ -33,4 +33,21 @@ CREATE TABLE Messeges(
 
 
 
-#INSERT INTO users (username, password) VALUE ('dahlberg', 'test');
+INSERT INTO users (username) VALUE ('dahlberg');
+INSERT INTO users (username) VALUE ('fredde');
+
+
+INSERT INTO channels (channelname, channeltheme,userid) VALUE ('dif', 'fotboll',1);
+INSERT INTO channels (channelname,channeltheme,userid) VALUE ('aik', 'fotboll',2);
+
+
+INSERT INTO Messeges (userid,channelid,msg) VALUE (1, 2,'hejsan hur mår du');
+INSERT INTO Messeges (userid,channelid,msg) VALUE (2, 2,'bra,sj');
+
+
+INSERT INTO Messeges (userid,channelid,msg) VALUE (1, 1,'hejsan hur mår du');
+INSERT INTO Messeges (userid,channelid,msg) VALUE (2, 1,'bra,sj');
+
+
+
+select msg from Messeges WHERE channelid = 1;
