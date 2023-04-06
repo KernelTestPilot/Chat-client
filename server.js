@@ -21,6 +21,7 @@ app.get('/', (req, res) => {
 
 
 require("./routes/ducks")(app);
+require("./routes/broadcast")(app);
 app.listen(5000, () => {
   console.log(`Server is up and running on 5000 ...`);
   
