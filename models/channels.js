@@ -33,7 +33,7 @@ Channel.getAll = result => {
 };
 
 Channel.findById = (id, result) => {
-  sql.query(`SELECT userid, msg FROM Messages WHERE channelid = ${id}`, (err, res) => {
+  sql.query(`SELECT chat.msg, users.username FROM chat INNER JOIN users ON chat.userid = users.userid WHERE channelid = ${id} ORDER BY chat.msgid`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -41,8 +41,8 @@ Channel.findById = (id, result) => {
     }
 
     if (res.length) {
-      console.log("found tutorial: ", res[0]);
-      result(null, res[0]);
+      console.log("found tutorial: ", res);
+      result(null, res);
       return;
     }
 
@@ -51,5 +51,23 @@ Channel.findById = (id, result) => {
   });
 };
 
+Channel.remove = (id, result) => {
+  sql.query("DELETE FROM channels WHERE channelid = ?", id, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+
+    if (res.affectedRows == 0) {
+      // not found Tutorial with the id
+      result({ kind: "not_found" }, null);
+      return;
+    }
+
+    console.log("deleted channel with id: ", id);
+    result(null, res);
+  });
+};
 
 module.exports = Channel;
