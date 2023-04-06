@@ -20,7 +20,7 @@ CREATE TABLE channels(
 	FOREIGN KEY (userid) REFERENCES users(userid)
 );
 
-CREATE TABLE Messeges( 
+CREATE TABLE chat( 
 	msgid int NOT NULL AUTO_INCREMENT, 
     userid int,
     channelid int,
@@ -41,13 +41,18 @@ INSERT INTO channels (channelname, channeltheme,userid) VALUE ('dif', 'fotboll',
 INSERT INTO channels (channelname,channeltheme,userid) VALUE ('aik', 'fotboll',2);
 
 
-INSERT INTO Messeges (userid,channelid,msg) VALUE (1, 2,'hejsan hur mår du');
-INSERT INTO Messeges (userid,channelid,msg) VALUE (2, 2,'bra,sj');
+INSERT INTO chat (userid,channelid,msg) VALUE (1, 2,'hejsan hur mår du');
+INSERT INTO chat (userid,channelid,msg) VALUE (2, 2,'bra,sj');
 
 
-INSERT INTO Messeges (userid,channelid,msg) VALUE (1, 1,'hejsan hur mår du');
-INSERT INTO Messeges (userid,channelid,msg) VALUE (2, 1,'bra,sj');
+INSERT INTO chat (userid,channelid,msg) VALUE (1, 1,'fotboll kl 1');
+INSERT INTO chat (userid,channelid,msg) VALUE (2, 1,'javisst vi möts där');
 
 
 
-select msg from Messeges WHERE channelid = 1;
+select msg,userid from chat WHERE channelid = 1;
+
+SELECT chat.msg, chat.userid,users.username
+FROM chat
+INNER JOIN users
+ON chat.userid = users.userid;
