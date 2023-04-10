@@ -4,10 +4,11 @@ use db;
 
 
 
-
 CREATE TABLE users( 
 	userid int NOT NULL AUTO_INCREMENT, 
-    username VARCHAR(30) NOT NULL UNIQUE, 
+    username VARCHAR(30) NOT NULL UNIQUE,
+    password VARCHAR(30) NOT NULL,
+    rolename VARCHAR(30),
     PRIMARY KEY (userid)
 );
 
@@ -33,12 +34,13 @@ CREATE TABLE chat(
 
 
 
-INSERT INTO users (username) VALUE ('dahlberg');
-INSERT INTO users (username) VALUE ('fredde');
+INSERT INTO users (username, password, rolename) VALUE ('dahlberg','test', 'admin');
+INSERT INTO users (username,password ) VALUE ('fredde','test');
 
 
 INSERT INTO channels (channelname, channeltheme,userid) VALUE ('dif', 'fotboll',1);
 INSERT INTO channels (channelname,channeltheme,userid) VALUE ('aik', 'fotboll',2);
+INSERT INTO channels (channelname, channeltheme,userid) VALUE ('Broadcast', 'Trafikolyckor',1);
 
 
 INSERT INTO chat (userid,channelid,msg) VALUE (1, 2,'hejsan hur mår du');
@@ -49,10 +51,9 @@ INSERT INTO chat (userid,channelid,msg) VALUE (1, 1,'fotboll kl 1');
 INSERT INTO chat (userid,channelid,msg) VALUE (2, 1,'javisst vi möts där');
 
 
-
 select msg,userid from chat WHERE channelid = 1;
 
-SELECT chat.msg, chat.userid,users.username
+SELECT chat.msg,users.username
 FROM chat
 INNER JOIN users
 ON chat.userid = users.userid;
