@@ -6,7 +6,9 @@ module.exports = app => {
   const chat = require("../controller/chatcontroller.js")
     
   // Create a new user
-  router.post("/createuser", user.create );
+
+  router.post("/login", user.login );
+  
   router.put("/", channel.create );
   router.post("/", chat.create );
   router.get("/", channel.findAll );
