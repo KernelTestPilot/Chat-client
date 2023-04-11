@@ -7,16 +7,17 @@ module.exports = app => {
   const broadcast = require("../controller/broadcastcontroller.js");
   
   const auth = require("../controller/authcontroller.js");
-  // Post a broadcast message
-  router.post("/", broadcast.create );
+
 //auth
   router.post("/login", user.login );
-
-  // Get all previous broadcastes
-  router.get("/", broadcast.findOne );
-
-  router.get("/welcome", auth.verifyToken, (req, res, next) => {
+  
+  router.get("/", auth.verifyToken, (req, res, next) => {
     broadcast.findOne(req, res);
+    //res.status(200).send("Welcome 🙌 ");
+  });
+
+  router.post("/", auth.verifyToken, (req, res, next) => {
+    broadcast.create(req, res);
     //res.status(200).send("Welcome 🙌 ");
   });
 

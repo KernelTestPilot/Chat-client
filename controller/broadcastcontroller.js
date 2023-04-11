@@ -23,7 +23,7 @@ exports.findOne = (req, res) => {
       msg: req.body.msg
     });
   
-    Broadcast.create(chat, (err, data) => {
+    Broadcast.create(broadcast, (err, data) => {
       if (err)
         res.status(500).send({
           message:

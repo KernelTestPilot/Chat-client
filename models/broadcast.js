@@ -2,7 +2,9 @@ const sql = require("../config/sqlConnection.js");
 
 // constructor
 const Broadcast = function(broadcast) {
-    this.channelname = broadcast.channelname;
+  this.channelid = broadcast.channelid,
+  this.userid = broadcast.userid,
+  this.msg = broadcast.msg
   };
 
 Broadcast.findById = (result) => {
