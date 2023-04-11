@@ -14,11 +14,9 @@ CREATE TABLE users(
 
 CREATE TABLE channels( 
 	channelid int NOT NULL AUTO_INCREMENT, 
-    userid int,
     channeltheme varchar(30),
     channelname varchar(20),
-    PRIMARY KEY (channelid),
-	FOREIGN KEY (userid) REFERENCES users(userid)
+    PRIMARY KEY (channelid)
 );
 
 CREATE TABLE chat( 
@@ -38,9 +36,9 @@ INSERT INTO users (username, password, rolename) VALUE ('dahlberg','test', 'admi
 INSERT INTO users (username,password ) VALUE ('fredde','test');
 
 
-INSERT INTO channels (channelname, channeltheme,userid) VALUE ('dif', 'fotboll',1);
-INSERT INTO channels (channelname,channeltheme,userid) VALUE ('aik', 'fotboll',2);
-INSERT INTO channels (channelname, channeltheme,userid) VALUE ('Broadcast', 'Trafikolyckor',1);
+INSERT INTO channels (channelname, channeltheme) VALUE ('dif', 'fotboll');
+INSERT INTO channels (channelname,channeltheme) VALUE ('aik', 'fotboll');
+INSERT INTO channels (channelname, channeltheme) VALUE ('Broadcast', 'Trafikolyckor');
 
 
 INSERT INTO chat (userid,channelid,msg) VALUE (1, 2,'hejsan hur mår du');
