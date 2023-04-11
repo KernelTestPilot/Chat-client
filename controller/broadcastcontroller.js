@@ -1,15 +1,15 @@
 const Broadcast = require("../models/broadcast.js");
 
 exports.findOne = (req, res) => {
-    Broadcast.findById(req.params.id, (err, data) => {
+    Broadcast.findById((err, data) => {
       if (err) {
         if (err.kind === "not_found") {
           res.status(404).send({
-            message: `Not found Channel with id ${req.params.id}.`
+            message: `Not found Channel`
           });
         } else {
           res.status(500).send({
-            message: "Error retrieving Channel with id " + req.params.id
+            message: "Error retrieving Channel "
           });
         }
       } else res.send(data);

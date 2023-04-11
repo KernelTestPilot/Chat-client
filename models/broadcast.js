@@ -5,7 +5,7 @@ const Broadcast = function(broadcast) {
     this.channelname = broadcast.channelname;
   };
 
-Broadcast.findById = (id, result) => {
+Broadcast.findById = (result) => {
     sql.query(`SELECT chat.msg, users.username FROM chat INNER JOIN users ON chat.userid = users.userid WHERE channelid = 1 ORDER BY chat.msgid`, (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -18,8 +18,6 @@ Broadcast.findById = (id, result) => {
         result(null, res);
         return;
       }
-  
-      // not found Tutorial with the id
       result({ kind: "not_found" }, null);
     });
   };

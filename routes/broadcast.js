@@ -15,8 +15,9 @@ module.exports = app => {
   // Get all previous broadcastes
   router.get("/", broadcast.findOne );
 
-  router.post("/welcome", auth.verifyToken, (req, res, next) => {
-    res.status(200).send("Welcome 🙌 ");
+  router.get("/welcome", auth.verifyToken, (req, res, next) => {
+    broadcast.findOne(req, res);
+    //res.status(200).send("Welcome 🙌 ");
   });
 
   app.use('/ducks/api/broadcast', router);

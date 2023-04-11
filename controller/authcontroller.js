@@ -28,7 +28,6 @@ exports.verifyToken = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, SUPER_SECRET);
     req.user = decoded;
-    console.log(req.user)
   } catch (err) {
     return res.status(401).send("Invalid Token");
   }
