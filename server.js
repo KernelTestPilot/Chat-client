@@ -8,6 +8,19 @@ const app = express();
 app.use(cors());
 app.use(express.json())
 
+const http = require('http');
+const { Server } = require('socket.io'); 
+const server = http.createServer(app);
+
+exports.io = new Server(server, {
+  cors: {
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST'],
+  },
+});
+
+
+
 
 app.get('/', (req, res) => {
 
@@ -22,7 +35,7 @@ app.get('/', (req, res) => {
 
 require("./routes/ducks")(app);
 require("./routes/broadcast")(app);
-app.listen(5000, () => {
+server.listen(5000, () => {
   console.log(`Server is up and running on 5000 ...`);
   
 });

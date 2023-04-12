@@ -1,5 +1,15 @@
 const Chat = require("../models/chats.js");
+const Socket = require("../server.js");
 
+
+Socket.io.on('connection',  (socket) => {
+  console.log("socket connected") 
+
+  socket.on('message', function(message){
+    socket.emit("new message")
+})
+})
+  
 exports.create = (req, res) => {
     const chat = new Chat({
       channelid: req.body.channelid,
@@ -13,6 +23,7 @@ exports.create = (req, res) => {
           message:
             err.message || "Some error occurred while creating the message."
         });
-      else res.send("success");
+      else 
+      res.send("success");
     });
   };
