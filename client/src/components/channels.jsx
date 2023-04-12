@@ -25,25 +25,22 @@ const Channels = ({token}) => {
 
 return(
 
-<div>
-  {channels.map((channel) => {
-    console.log(channel)
-    return (
-      <li key={channel.channelid}>
-        <Link to={"/channels/"+channel.channelid}>
-            <h3 className="channelLinks">{channel.channelname}</h3>
-            <small>{channel.channeltheme}</small>
-            <Channel data = {channel}/>
-        </Link>
-  </li>
-    )
-  })}
-</div>
+  <ul>
+      {channels.map(channel => (
+        <li key={channel.channelid}>
+          <Link to={`/channels/${channel.channelid}`}>
+            <Channel data={channel} />
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+};
 
 
 
-)
 
-}
+
+
 
 export default Channels;

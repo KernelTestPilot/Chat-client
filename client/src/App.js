@@ -22,7 +22,6 @@ function App() {
      <div className="container mt-3">
      <Routes>
           <Route path="/login" element={<Login setToken={setToken}/>} />
-          <Route path="/channels/" element={<Channels token={token}/>} />
         </Routes>
       </div>
       <div className="channelHeader">
@@ -31,7 +30,9 @@ function App() {
       <div className="channelMessages">
           <Routes>
             <Route path="/login" element={<Login setToken={setToken}/>} />
-            <Route path="/channels/:id" element={<Channel />} />
+            <Route path="/channels/" element={<Channels token={token}/>} />
+
+            <Route path="/channels/:channelid" element={<Channels />} />
           </Routes>
           <p>ALL MESSAGES FOR SELECTED CHANNEL WILL GO HERE</p>
       </div>
