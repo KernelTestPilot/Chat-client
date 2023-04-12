@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import UserService from "../services/UserService";
+import { Link} from "react-router-dom";
 import Channel from "./channel";
 
 const Channels = ({token}) => {
@@ -25,19 +26,19 @@ const Channels = ({token}) => {
 return(
 
 <div>
-    <div className='container is-fluid is-Light'>
-
-    {channels.map((channel) => {
-      console.log(channel)
-            return (
-              <Channel data = {channel}/>
-            )
-          })}
-        
-    
-        </div>
-      
-  </div>
+  {channels.map((channel) => {
+    console.log(channel)
+    return (
+      <li key={channel.channelid}>
+        <Link to={"/channels/"+channel.channelid}>
+            <h3 className="channelLinks">{channel.channelname}</h3>
+            <small>{channel.channeltheme}</small>
+            <Channel data = {channel}/>
+        </Link>
+  </li>
+    )
+  })}
+</div>
 
 
 

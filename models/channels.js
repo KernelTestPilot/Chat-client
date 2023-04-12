@@ -20,7 +20,7 @@ Channel.create = (newChannel, result) => {
 };
 
 Channel.getAll = result => {
-  sql.query("SELECT channelid, channelname FROM channels", (err, res) => {
+  sql.query("SELECT channelid, channelname, channeltheme FROM channels", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
