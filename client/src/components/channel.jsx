@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import UserService from "../services/UserService";
 
 const Channel = ({data}) => {
@@ -16,30 +16,25 @@ const Channel = ({data}) => {
 
       });
   };
-
+  console.log(data)
+  console.log({msg})
   return (
     <div>
-          {console.log(data)}
-          {console.log({msg})}
+      <button onClick={getmsg} className="channelBtn">
+        <h3>{data.channelname}</h3>
+        <small>{data.channeltheme}</small>
+      </button>
       <div>
-        
-      <button onClick={getmsg} className="btn btn-success">
-            Login
-          </button>
-      <p> {data.channelname}</p>
+        {msg.shift()}
+        {msg.map(msgs => (
+          <div className="asd">
+          <p>
+            {msgs.msg}
+          </p>
         </div>
-        <div>
-      <p> {data.channeltheme}</p>
-        </div>
-    
-    
-    
+        ))}
+      </div>
     </div>
-
-  
-
-
-
   )
 }
 

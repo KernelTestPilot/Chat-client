@@ -22,18 +22,17 @@ const Channels = ({token}) => {
       if(isfetch){
         getChannels();
       }
-
 return(
-
   <ul>
-      {channels.map(channel => (
-        <li key={channel.channelid}>
-          <Link to={`/channels/${channel.channelid}`}>
-            <Channel data={channel} />
-          </Link>
-        </li>
-      ))}
-    </ul>
+    {channels.shift()}
+    {channels.map(channel => (
+      <li key={channel.channelid} className="channelList">
+        <Link to={`/channels/${channel.channelid}`}>
+          <Channel data={channel} />
+        </Link>
+      </li>
+    ))}
+  </ul>
   );
 };
 
