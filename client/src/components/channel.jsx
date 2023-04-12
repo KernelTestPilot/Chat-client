@@ -1,16 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import UserService from "../services/UserService";
-
 const Channel = ({data}) => {
-  const [msg, setMsg] = useState([]);
 
+  const [msg, setMsg] = useState([]);
+  const [id, setId] = useState([]);
+
+  let { channelid } = useParams();
+
+  useEffect(() => {
+    getmsg();
+  }, [channelid])
+  
   const getmsg = (id) => {
-    UserService.getOneChannel(data.channelid)
+    UserService.getOneChannel(channelid)
       .then(response => {
         setMsg([msg, ...response.data])
-
-
+       
       })
       .catch(e => {
 
@@ -20,19 +26,16 @@ const Channel = ({data}) => {
   console.log({msg})
   return (
     <div>
-      <button onClick={getmsg} className="channelBtn">
-        <h3>{data.channelname}</h3>
-        <small>{data.channeltheme}</small>
-      </button>
       <div>
-        {msg.shift()}
-        {msg.map(msgs => (
-          <div className="asd">
-          <p>
-            {msgs.msg}
-          </p>
-        </div>
-        ))}
+        {
+        msg.length  ?
+        msg.map((msgs, index) =>
+        <div> <div><p>{msgs.username}</p>  </div>
+
+      <div> <p>{msgs.msg}</p> </div></div>
+        )
+        :  <p>No Tags listed for this entry.</p>
+        }
       </div>
     </div>
   )

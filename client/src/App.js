@@ -19,12 +19,13 @@ function App() {
   return (
     <div>
       <div className="channelHeader">
-        <h1>SELECTED CHANNELS NAME</h1>
+      <h1>SELECTED CHANNELS NAME</h1>
+
       </div>
         <div className="channelContainer">
           <Routes>
             <Route path="/login" element={<Login setToken={setToken}/>} />
-            <Route path="/channels/:channelid" element={<Channels />} />
+            <Route path="/channels/:channelid" element={<><Channel/><Channels/></>} />
             <Route path="/channels/" element={<Channels token={token}/>} />
           </Routes>
         </div>

@@ -28,7 +28,7 @@ return(
     {channels.map(channel => (
       <li key={channel.channelid} className="channelList">
         <Link to={`/channels/${channel.channelid}`}>
-          <Channel data={channel} />
+          <p>{channel.channelname}</p>
         </Link>
       </li>
     ))}
