@@ -17,9 +17,9 @@ function App() {
   const { token, setToken } = useToken();
 
   return (
-    <div>
+    <div className="site">
       <div className="channelHeader">
-      <h1>SELECTED CHANNELS NAME</h1>
+      <h1>BACKENDEX</h1>
 
       </div>
         <div className="channelContainer">

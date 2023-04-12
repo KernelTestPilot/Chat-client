@@ -23,16 +23,15 @@ const Channels = ({token}) => {
         getChannels();
       }
 return(
-  <ul>
+  <div class="channelList">
+    <h3 className="channelsHeader">CHANNELS:</h3><br />
     {channels.shift()}
     {channels.map(channel => (
-      <li key={channel.channelid} className="channelList">
-        <Link to={`/channels/${channel.channelid}`}>
-          <p>{channel.channelname}</p>
-        </Link>
-      </li>
+      <Link to={`/channels/${channel.channelid}`}>
+        <p>{channel.channelname}</p>
+      </Link>
     ))}
-  </ul>
+  </div>
   );
 };
 

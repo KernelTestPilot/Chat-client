@@ -25,19 +25,19 @@ const Channel = ({data}) => {
   console.log(data)
   console.log({msg})
   return (
-    <div>
       <div>
+        {msg.shift()}
         {
         msg.length  ?
         msg.map((msgs, index) =>
-        <div> <div><p>{msgs.username}</p>  </div>
-
-      <div> <p>{msgs.msg}</p> </div></div>
+          <div className="chatBox">
+            <small className="chatTitle">{msgs.username + ":"}</small>
+            <p className="chatText">{msgs.msg}</p>
+          </div>
         )
         :  <p>No Tags listed for this entry.</p>
         }
       </div>
-    </div>
   )
 }
 

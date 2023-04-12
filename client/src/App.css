@@ -1,14 +1,33 @@
-.channelContainer {
-  background-color: green;
+.site {
+  width: 600px;
+  margin: 0 auto;
 }
 
-.channelBtn {
-  padding: 1em 3em;
-  margin: 0 0.5em;
-}
+.channelContainer {}
 
 .channelList {
-  list-style: none;
+  border: 1px solid #000;
+  border-radius: 0 15px;
+  padding: 0;
+  margin: 0.5em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.channelsHeader {
+  margin-left: 1em;
+  color: green;
+}
+
+.channelList a {
+  padding: 0.5em 1em;
+  text-decoration: none;
+  color: #000;
+}
+
+.channelList a:hover {
+  color: #CCC;
 }
 
 .channelBtn > * {
@@ -17,7 +36,22 @@
 }
 
 .channelHeader {
-  background-color: blue;
   text-align: center;
   padding: 1em;
+  color:midnightblue;
+}
+
+.chatBox {
+  border: 1px solid #000;
+  border-radius: 0 15px;
+  padding: 0.5em 0 0 0;
+  margin: 0.5em;
+}
+.chatTitle {
+  margin: 0 0 0 1em;
+}
+
+.chatText {
+  margin: 0 0 1em 1em;
+  padding: 0;
 }
