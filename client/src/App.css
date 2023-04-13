@@ -1,18 +1,25 @@
 .site {
-  width: 600px;
+  width: clamp(250px, 100%, 600px);
+  min-height: 100vh;
   margin: 0 auto;
+  background: url(https://images.unsplash.com/photo-1542242476-5a3565835a38?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2574&q=80);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .channelContainer {}
 
 .channelList {
-  border: 1px solid #000;
-  border-radius: 0 15px;
-  padding: 0;
-  margin: 0.5em;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   flex-wrap: wrap;
+  align-items: center;
+  border: 1px solid #000;
+  border-radius: 0 15px;
+  padding: 0 0.5em;
+  margin: 0.5em;
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 .channelsHeader {
@@ -27,7 +34,7 @@
 }
 
 .channelList a:hover {
-  color: #CCC;
+  background: #FFF;
 }
 
 .channelBtn > * {
@@ -43,6 +50,7 @@
 
 .chatBox {
   border: 1px solid #000;
+  background-color: rgba(255, 255, 255, 0.8);
   border-radius: 0 15px;
   padding: 0.5em 0 0 0;
   margin: 0.5em;

@@ -10,7 +10,7 @@ module.exports = app => {
   router.post("/login", user.login );
   
   router.put("/", channel.create );
-  router.post("/", chat.create );
+  router.post("/:id", chat.create );
   router.get("/", channel.findAll );
   router.get("/:id", channel.findOne);
   router.delete("/:id", channel.delete);

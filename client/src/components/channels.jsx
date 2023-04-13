@@ -24,11 +24,11 @@ const Channels = ({token}) => {
       }
 return(
   <div class="channelList">
-    <h3 className="channelsHeader">CHANNELS:</h3><br />
+    <h3 className="channelsHeader">CHANNELS:</h3>
     {channels.shift()}
     {channels.map(channel => (
       <Link to={`/channels/${channel.channelid}`}>
-        <p>{channel.channelname}</p>
+        {channel.channelname}
       </Link>
     ))}
   </div>
