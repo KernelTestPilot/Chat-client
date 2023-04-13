@@ -36,17 +36,24 @@ INSERT INTO users (username, password, rolename) VALUE ('dahlberg','test', 'admi
 INSERT INTO users (username,password ) VALUE ('fredde','test');
 
 
-INSERT INTO channels (channelname, channeltheme) VALUE ('dif', 'fotboll');
-INSERT INTO channels (channelname,channeltheme) VALUE ('aik', 'fotboll');
 INSERT INTO channels (channelname, channeltheme) VALUE ('Broadcast', 'Trafikolyckor');
+INSERT INTO channels (channelname, channeltheme) VALUE ('DIF', 'Allt om Djurgårdens IF');
+INSERT INTO channels (channelname,channeltheme) VALUE ('AIK', 'gnällgnaget');
 
+INSERT INTO chat (userid,channelid,msg) VALUE (1, 1,'Älg på vägen, Danderyd');
+INSERT INTO chat (userid,channelid,msg) VALUE (1, 1,'Buss i diket, Norrtälje');
+INSERT INTO chat (userid,channelid,msg) VALUE (1, 1,'Häst på gågatan, Vallentuna');
+INSERT INTO chat (userid,channelid,msg) VALUE (1, 1,'Älg på vägen, Danderyd');
+INSERT INTO chat (userid,channelid,msg) VALUE (1, 1,'Buss i diket, Norrtälje');
+INSERT INTO chat (userid,channelid,msg) VALUE (1, 1,'Häst på gågatan, Vallentuna');
+INSERT INTO chat (userid,channelid,msg) VALUE (1, 1,'Älg på vägen, Danderyd');
+INSERT INTO chat (userid,channelid,msg) VALUE (1, 1,'Buss i diket, Norrtälje');
 
-INSERT INTO chat (userid,channelid,msg) VALUE (1, 2,'hejsan hur mår du');
+INSERT INTO chat (userid,channelid,msg) VALUE (1, 2,'hejsan testar kanal #2');
 INSERT INTO chat (userid,channelid,msg) VALUE (2, 2,'bra,sj');
 
-
-INSERT INTO chat (userid,channelid,msg) VALUE (1, 1,'fotboll kl 1');
-INSERT INTO chat (userid,channelid,msg) VALUE (2, 1,'javisst vi möts där');
+INSERT INTO chat (userid,channelid,msg) VALUE (1, 3,'hejsan testar kanal #3');
+INSERT INTO chat (userid,channelid,msg) VALUE (2, 3,'bra,sj');
 
 
 select msg,userid from chat WHERE channelid = 1;
