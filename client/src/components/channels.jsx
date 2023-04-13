@@ -22,7 +22,7 @@ const Channels = ({token}) => {
       if(isfetch){
         getChannels();
       }
-      channels.shift()
+ 
 return(
   <div class="channelList">
     <h3 className="channelsHeader">CHANNELS:</h3>

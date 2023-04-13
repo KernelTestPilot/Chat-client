@@ -22,7 +22,6 @@ const Channel = ({data}) => {
 
       });
   };
-  msg.shift();
   console.log(data)
   console.log({msg})
   return (
