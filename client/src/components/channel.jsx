@@ -22,11 +22,11 @@ const Channel = ({data}) => {
 
       });
   };
+  msg.shift();
   console.log(data)
   console.log({msg})
   return (
       <div>
-        {msg.shift()}
         {
         msg.length  ?
         msg.map((msgs, index) =>

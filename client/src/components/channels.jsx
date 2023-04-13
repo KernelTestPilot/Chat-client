@@ -22,10 +22,10 @@ const Channels = ({token}) => {
       if(isfetch){
         getChannels();
       }
+      channels.shift()
 return(
   <div class="channelList">
     <h3 className="channelsHeader">CHANNELS:</h3>
-    {channels.shift()}
     {channels.map(channel => (
       <Link to={`/channels/${channel.channelid}`}>
         {channel.channelname}
