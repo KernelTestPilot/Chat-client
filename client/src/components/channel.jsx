@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import UserService from "../services/UserService";
+import Message from "./message";
+
 const Channel = ({data}) => {
 
   const [msg, setMsg] = useState([]);
@@ -22,8 +24,6 @@ const Channel = ({data}) => {
 
       });
   };
-  console.log(data)
-  console.log({msg})
   return (
       <div>
         {
@@ -36,7 +36,9 @@ const Channel = ({data}) => {
         )
         :  <p>No Tags listed for this entry.</p>
         }
+      
       </div>
+      
   )
 }
 

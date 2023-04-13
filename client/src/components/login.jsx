@@ -24,7 +24,7 @@ const Login = ({ setToken }) => {
  
     useEffect(() => {
       if (handleSubmit) {
-        navigate("/");
+        navigate("/channels");
       } else {
         navigate("/login");
         
@@ -47,7 +47,7 @@ const Login = ({ setToken }) => {
             setSubmitted(true);
             if(response.status === 200){
               console.log(response.data)
-              setToken(response.data.token)
+              setToken(response.data)
               setSubmitted(true);  
               setLogin(true)            	
             }

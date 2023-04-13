@@ -42,7 +42,7 @@ exports.create = (req, res) => {
               //find the current role of a user
             //set a jwt token with generate function
           const token =  auth.generate(data.username, data.userid, data.rolename)
-           const user = {token: token ,username: data.username,role: data.rolename}
+           const user = {token: token ,username: data.username,role: data.rolename, userid: data.userid}
            console.log(user)
              res.status(200).send(user)
 

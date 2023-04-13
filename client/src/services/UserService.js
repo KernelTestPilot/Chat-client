@@ -15,8 +15,8 @@ class UserService {
     return http.get(`/${id}`);
   }
  
-  CreateChat(data) {
-    return http.post("/", data);
+  CreateChat(data, id) {
+    return http.post(`/${id}`, data);
   }
   CreateChannel(data) {
     return http.put("/", data);
