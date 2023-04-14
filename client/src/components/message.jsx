@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import UserService from "../services/UserService";
+import io from 'socket.io-client';
+
+const socket = io.connect('http://localhost:5000/'); // server connection
+socket.onAny((event, ...args) => {
+  console.log(event, args);
+});
 const Message = ({data}) => {
 
   let { channelid } = useParams();
@@ -28,12 +34,14 @@ const Message = ({data}) => {
     UserService.CreateChat(data,channelid)
       .then(response => {
        console.log(response)
-       
+       socket.emit('message', {});
+
       })
       .catch(e => {
 
       });
   };
+  
   const handleInputChange = event => {
    
     const { name, value } = event.target;
