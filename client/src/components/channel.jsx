@@ -1,19 +1,46 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import UserService from "../services/UserService";
 import Message from "./message";
+import { SocketContext } from '../context/socketprovider';
 
-const Channel = ({data}) => {
+const Channel = ({token}) => {
 
+  const socket = useContext(SocketContext);
+  
   const [msg, setMsg] = useState([]);
+
   const [id, setId] = useState([]);
 
   let { channelid } = useParams();
 
-  useEffect(() => {
+
+  const joinRoom = (id) => {
+    socket.emit('join', id);
     getmsg();
-  }, [channelid])
-  
+  }
+
+  useEffect(() => {
+  joinRoom(channelid);
+  return () => {
+    // Disconnect from current room
+    return () => socket.disconnect();
+  };
+  }, [channelid]);
+
+  useEffect(() => {
+    socket.on('new message', (value) => {
+      var data = {
+            msg: value.msg,
+            username: value.username,
+      }
+      setMsg(prevState => [...prevState, data]);
+    });
+    return () => socket.disconnect();
+}, [])
+
+
+
   const getmsg = (id) => {
     UserService.getOneChannel(channelid)
       .then(response => {
@@ -25,7 +52,9 @@ const Channel = ({data}) => {
       });
   };
   return (
+    
       <div>
+        
         {
         msg.length  ?
         msg.map((msgs, index) =>

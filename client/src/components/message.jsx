@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import UserService from "../services/UserService";
-import io from 'socket.io-client';
+import { SocketContext } from '../context/socketprovider';
 
-const socket = io.connect('http://localhost:5000/'); // server connection
-socket.onAny((event, ...args) => {
-  console.log(event, args);
-});
 const Message = ({data}) => {
 
   let { channelid } = useParams();
+  const socket = useContext(SocketContext); 
 
   const [channel, setChannel] = useState(channelid);
 
@@ -17,24 +14,30 @@ const Message = ({data}) => {
     msg: null,
     userid: data.userid,
     channelid: null,
+    username: data.username
   };
+
   const [msg, setMsg] = useState(initialUserState);
   
   useEffect(() => {
     setChannel(channelid)
-    console.log(data.userid)
   }, [channelid]);
+
+  useEffect(() => {
+    // here we can use socket events and listeners
+    return () => socket.disconnect(); //cleanup
+}, [])
 
   const sendmsg = (data, channelid) => {
     var data = {
       msg: msg.msg,
       userid: msg.userid,
       channelid: channel,
+      username: msg.username
     };
     UserService.CreateChat(data,channelid)
       .then(response => {
-       console.log(response)
-       socket.emit('message', {});
+        socket.emit('message', data);
 
       })
       .catch(e => {
@@ -46,7 +49,6 @@ const Message = ({data}) => {
    
     const { name, value } = event.target;
     setMsg({ ...msg, [name]: value });
-    console.log({msg})
   };
   return (
       <div>

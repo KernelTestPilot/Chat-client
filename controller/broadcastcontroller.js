@@ -18,7 +18,7 @@ exports.findOne = (req, res) => {
 
   exports.create = (req, res) => {
     const broadcast = new Broadcast({
-      channelid: req.body.channelid,
+      channelid: 1,
       userid: req.body.userid,
       msg: req.body.msg
     });
