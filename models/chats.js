@@ -13,8 +13,7 @@ const Chat = function(chat) {
         result(err, null);
         return;
       }
-      console.log(newMessage)
-      console.log("created chat message: ", { id: res.insertId, ...newMessage });
+      //console.log("created chat message: ", { id: res.insertId, ...newMessage });
       result(null, { id: res.insertId, ...newMessage });
     });
   };

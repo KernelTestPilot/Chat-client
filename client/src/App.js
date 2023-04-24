@@ -5,6 +5,7 @@ import Message from "./components/message";
 import Channels from "./components/channels";
 import Channel from "./components/channel";
 import Login from "./components/login";
+import UserList from "./components/userList";
 import useToken from "./components/useToken";
 import { socket, SocketContext } from './context/socketprovider';
 
@@ -27,6 +28,7 @@ function App() {
              
              <SocketContext.Provider  value={socket}> 
              <Channel data={token}/>
+             <UserList data={token}  />
           <Message data={token}  />
           <Channels/>
 	    	</SocketContext.Provider>

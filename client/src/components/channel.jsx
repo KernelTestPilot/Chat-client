@@ -4,7 +4,7 @@ import UserService from "../services/UserService";
 import Message from "./message";
 import { SocketContext } from '../context/socketprovider';
 
-const Channel = ({token}) => {
+const Channel = ({data}) => {
 
   const socket = useContext(SocketContext);
   
@@ -14,16 +14,21 @@ const Channel = ({token}) => {
 
   let { channelid } = useParams();
 
+  
 
   const joinRoom = (id) => {
-    socket.emit('join', id);
+    socket.emit('join', id, data.username);
     getmsg();
+  }
+  const leaveRoom = (id) => {
+    socket.emit('leaveRoom', id);
   }
 
   useEffect(() => {
+  
   joinRoom(channelid);
   return () => {
-    // Disconnect from current room
+    leaveRoom(channelid)
     return () => socket.disconnect();
   };
   }, [channelid]);

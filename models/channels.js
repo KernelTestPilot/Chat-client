@@ -13,8 +13,7 @@ Channel.create = (newChannel, result) => {
       result(err, null);
       return;
     }
-    console.log(newChannel)
-    console.log("created channel: ", { id: res.insertId, ...newChannel });
+    //console.log("created channel: ", { id: res.insertId, ...newChannel });
     result(null, { id: res.insertId, ...newChannel });
   });
 };
@@ -41,7 +40,7 @@ Channel.findById = (id, result) => {
     }
 
     if (res.length) {
-      console.log("found tutorial: ", res);
+     // console.log("found channel: ", res);
       result(null, res);
       return;
     }
