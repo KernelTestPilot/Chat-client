@@ -14,34 +14,38 @@ function App() {
   const { token, setToken } = useToken();
 
   return (
-    <div className="site">
-      <div className="channelHeader">
-        <h1>BACKENDEX</h1>
-      </div>
-        <div className="channelContainer">
-
+    <div className="uk-container">
+<div class="content row">
+<div className="uk-width-1-1 main">
+  
+<div class="uk-grid uk-grid-small uk-grid-width-small-1-5 uk-grid-width-small-1-10 uk-grid-width-1-3">      
           <Routes>
-          
             <Route path="/login" element={<Login setToken={setToken}/>} />
             <Route path="/channels/:channelid" element={
             <>
-             
              <SocketContext.Provider  value={socket}> 
+           <div class="uk-width-1-6">
+            <Channels/>
+            </div>
+         
+             <div class="uk-width-2-3">
              <Channel data={token}/>
+             <Message data={token}  />
+             </div>
+            
+             <div class="uk-width-1-6">
              <UserList data={token}  />
-          <Message data={token}  />
-          <Channels/>
+             </div>
 	    	</SocketContext.Provider>
-     
-          
             </>
             
             } />
             <Route path="/channels/" element={<Channels token={token}/>} />
       
           </Routes>
-     
-        </div>
+          </div>
+   </div>
+    </div>
     </div>
   );
 }

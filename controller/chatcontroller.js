@@ -4,7 +4,6 @@ const Socket = require("../server.js");
 const connectedSockets = new Map();
 
 Socket.io.on('connection',  (socket) => {
-  
   console.log("socket connected") 
   socket.on('join', function(room, username){
     const prevRoom = connectedSockets.get(socket.id);
@@ -39,10 +38,6 @@ socket.on('message', function(msg){
 socket.on('disconnect', () => {
   connectedSockets.delete(socket.id);
   socket.disconnect();
-
-
-  //Socket.io.emit('onlineUsers', Array.from(connectedSockets.values()));
-
 });
 })
 

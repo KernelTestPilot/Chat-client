@@ -21,7 +21,7 @@ const UserList = ({data}) => {
 
     socket.on('onlineUsers',  (users) => {
 
-        
+        console.log(users)
         setOnlineUsers(users);
       
   
@@ -36,15 +36,15 @@ const UserList = ({data}) => {
 
   return (
     
-      <div>
-        <h1>Online Users:</h1>
-      <ul>
+    <div class="uk-child-width-expand@s" uk-grid>
+  
+    
         {onlineUsers.map((user) => (
-          <li key={user.socketId}>
-            {user.username ? user.username : 'Anonymous'}
-          </li>
+          <div class="uk-card-small  uk-card-body">
+         <strong>	   {user.username ? user.username : 'Anonymous'}</strong>
+            </div>
         ))}
-      </ul>
+    
 
       
       </div>

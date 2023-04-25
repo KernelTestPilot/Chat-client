@@ -52,27 +52,29 @@ const Message = ({data}) => {
   };
   return (
       <div>
-       <div>
-          
-          <div className="form-group">
-            <label htmlFor="description">msg</label>
-            <input
-              type="text"
-              className="form-control"
-              id="msg"
-              required
-              onChange={handleInputChange}
-              value={msg.msg}
-              name="msg"
-            />
-          </div>
+    
+       <div class="flexContainer">
 
-          <button onClick={sendmsg} className="btn btn-success">
+             <input 
+            type="text"
+            class="uk-input inputField"
+            id="msg"
+            required
+            onChange={handleInputChange}
+            value={msg.msg}
+            name="msg"
+             />
+
+             <button type="submit" onClick={sendmsg} class="uk-button">
             Send msg
           </button>
-        
-
+       
           </div>
+       
+      
+      
+          
+       
       </div>
   )
 }

@@ -12,7 +12,7 @@ const Channels = ({token}) => {
           .then(response => {
             setChannels([channels, ...response.data])
             setFetch(false)
-
+            console.log(channels)
           })
           .catch(e => {
 
@@ -22,15 +22,21 @@ const Channels = ({token}) => {
       if(isfetch){
         getChannels();
       }
- 
+
 return(
-  <div class="channelList">
-    <h3 className="channelsHeader">CHANNELS:</h3>
+  <div class="uk-child-width-expand@s" uk-grid>
+      <ul class="uk-list uk-list-divider">
+        
     {channels.map(channel => (
-      <Link to={`/channels/${channel.channelid}`}>
-        {channel.channelname}
+          <li class="uk-list">
+      <Link className='text-link' to={`/channels/${channel.channelid} `} >
+        <div>
+        #{channel.channelname}
+        </div>
       </Link>
+      </li>
     ))}
+    </ul>
   </div>
   );
 };

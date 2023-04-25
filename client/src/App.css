@@ -63,3 +63,18 @@
   margin: 0 0 1em 1em;
   padding: 0;
 }
+
+.text-link {
+  text-decoration: none;
+  color: inherit;
+
+}
+
+
+.flexContainer {
+    display: flex;
+}
+
+.inputField {
+    flex: 1;
+}
