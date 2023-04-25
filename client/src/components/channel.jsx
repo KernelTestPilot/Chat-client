@@ -58,14 +58,31 @@ const Channel = ({data}) => {
   };
   return (
     
-      <div>
-        
+       
+<div class="discord-messages">
+
         {
         msg.length  ?
         msg.map((msgs, index) =>
-          <div className="chatBox">
-            <small className="chatTitle">{msgs.username + ":"}</small>
-            <p className="chatText">{msgs.msg}</p>
+          <div className="discord-message">
+    
+            
+           <div className="discord-author-avatar" >
+            
+            <img src="https://i.imgur.com/0TeacfY.png" alt="Girl in a jacket" />
+           
+           </div>
+           
+           <div className="discord-author-username">
+           <strong>{msgs.username }</strong>
+           
+           <div className="discord-message-content"> 
+          <div className="discord-message-body ">{msgs.msg}</div>
+          </div>
+
+   
+            
+            </div>
           </div>
         )
         :  <p>No Tags listed for this entry.</p>

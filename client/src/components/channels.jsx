@@ -27,15 +27,21 @@ return(
   <div class="uk-child-width-expand@s" uk-grid>
       <ul class="uk-list uk-list-divider">
         
-    {channels.map(channel => (
-          <li class="uk-list">
-      <Link className='text-link' to={`/channels/${channel.channelid} `} >
-        <div>
-        #{channel.channelname}
-        </div>
-      </Link>
+      {channels.map(channel => {
+  if (typeof channel.channelname !== 'undefined') {
+    return (
+      <li className="uk-list" key={channel.channelid}>
+        <Link className='text-link' to={`/channels/${channel.channelid}`}>
+          <div>
+            #{channel.channelname}
+          </div>
+        </Link>
       </li>
-    ))}
+    );
+  } else {
+    return null; // or render a default value or handle the case as desired
+  }
+})}
     </ul>
   </div>
   );
