@@ -1,14 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
-import UserService from "../services/UserService";
-import Message from "./message";
+import { useParams } from "react-router-dom";
 import { SocketContext } from '../context/socketprovider';
 
 const UserList = ({data}) => {
 
   const socket = useContext(SocketContext);
-
-  const [id, setId] = useState([]);
 
   let { channelid } = useParams();
 
@@ -23,7 +19,7 @@ const UserList = ({data}) => {
 
         console.log(users)
         setOnlineUsers(users);
-      
+        console.log(users)
   
     });
     return () => {
@@ -36,11 +32,11 @@ const UserList = ({data}) => {
 
   return (
     
-    <div class="uk-child-width-expand@s" uk-grid>
+    <div className="uk-child-width-expand@s" uk-grid>
   
     
         {onlineUsers.map((user) => (
-          <div class="uk-card-small  uk-card-body">
+          <div key={user.id} className="uk-card-small  uk-card-body">
          <strong>	   {user.username ? user.username : 'Anonymous'}</strong>
             </div>
         ))}

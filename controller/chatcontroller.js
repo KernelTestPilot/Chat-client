@@ -13,13 +13,30 @@ Socket.io.on('connection',  (socket) => {
     socket.join(room)  
     connectedSockets.set(socket.id,{ 
       room: room,
-      username: username
+      username: username,
+      socketid: socket.id
     });
     const onlineUsers = Array.from(connectedSockets.values())
     .filter(user => user.room === room);
     Socket.io.to(room).emit('onlineUsers', onlineUsers);
-    
 ;})
+
+socket.on("make-answer", data => {
+  console.log(data)
+  Socket.io.to(data.to).emit("answer-made", {
+    room: socket.id,
+    answer: data.answer
+  });
+});
+
+socket.on("call-user", (data) => {
+  Socket.io.to(data.to).emit("call-made", {
+    offer: data.offer,
+    socket: socket.id
+  });
+});
+
+
 socket.on('leaveRoom', (roomName) => {
   socket.leave(roomName);
   connectedSockets.delete(socket.id);

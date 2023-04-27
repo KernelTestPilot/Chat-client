@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
-import UserService from "../services/UserService";
-import Message from "./message";
+import { useParams } from "react-router-dom";
+import UserService from "../services/UserService"
 import { SocketContext } from '../context/socketprovider';
 
 const Channel = ({data}) => {
@@ -9,8 +8,6 @@ const Channel = ({data}) => {
   const socket = useContext(SocketContext);
   
   const [msg, setMsg] = useState([]);
-
-  const [id, setId] = useState([]);
 
   let { channelid } = useParams();
 
@@ -56,15 +53,72 @@ const Channel = ({data}) => {
 
       });
   };
+  
+  const peerConnection = new RTCPeerConnection();
+
+
+  const openMediaDevices = async (constraints) => {
+    return await navigator.mediaDevices.getUserMedia(constraints);
+}
+
+try {
+    const stream = openMediaDevices({'video':true,'audio':true});
+    console.log('Got MediaStream:', stream);
+} catch(error) {
+    console.error('Error accessing media devices.', error);
+}
+
+const callUser = async (room) => {
+    const offer = await peerConnection.createOffer();
+    await peerConnection.setLocalDescription(new RTCSessionDescription(offer));
+    socket.emit("call-user", {
+        offer,
+        to: room
+      });
+  }
+  
+  socket.on("call-made", async data => {
+   if(data.offer){
+    await peerConnection.setRemoteDescription(new RTCSessionDescription(data.offer));
+    const answer = await peerConnection.createAnswer();
+    await peerConnection.setLocalDescription(answer);
+    socket.emit("make-answer", { 
+        answer,
+        to: data.room
+      });
+   }
+  });
+  
+  const remoteVideo = document.querySelector('video#remoteVideo');
+
+peerConnection.addEventListener('track', async (event) => {
+    const [remoteStream] = event.streams;
+    remoteVideo.srcObject = remoteStream;
+});
+
+  socket.on("answer-made", async data => {
+    await peerConnection.setRemoteDescription(
+      new RTCSessionDescription(data.answer)
+    );
+  });
+  
   return (
-    
+    <div>
+          <div class="video-container">
+            <video autoplay class="remote-video" id="remoteVideo"></video>
+            <video autoplay muted class="local-video" id="local-video"></video>
+          </div>
+        <button onClick={() => callUser(channelid)} className="btn btn-success">
+            call
+          </button>
+   
        
-<div class="discord-messages">
+<div className="discord-messages">
 
         {
         msg.length  ?
         msg.map((msgs, index) =>
-          <div className="discord-message">
+          <div key={index} className="discord-message">
     
             
            <div className="discord-author-avatar" >
@@ -88,6 +142,7 @@ const Channel = ({data}) => {
         :  <p>No Tags listed for this entry.</p>
         }
       
+      </div>
       </div>
       
   )

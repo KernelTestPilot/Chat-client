@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import UserService from "../services/UserService";
 import { Link} from "react-router-dom";
 import Channel from "./channel";
@@ -24,8 +24,8 @@ const Channels = ({token}) => {
       }
 
 return(
-  <div class="uk-child-width-expand@s" uk-grid>
-      <ul class="uk-list uk-list-divider">
+  <div className="uk-child-width-expand@s" uk-grid>
+      <ul className="uk-list uk-list-divider">
         
       {channels.map(channel => {
   if (typeof channel.channelname !== 'undefined') {

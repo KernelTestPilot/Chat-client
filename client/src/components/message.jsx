@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import UserService from "../services/UserService";
 import { SocketContext } from '../context/socketprovider';
 
@@ -53,11 +53,11 @@ const Message = ({data}) => {
   return (
       <div>
     
-       <div class="flexContainer">
+       <div className="flexContainer">
 
              <input 
             type="text"
-            class="uk-input inputField"
+            className="uk-input inputField"
             id="msg"
             required
             onChange={handleInputChange}
@@ -65,7 +65,7 @@ const Message = ({data}) => {
             name="msg"
              />
 
-             <button type="submit" onClick={sendmsg} class="uk-button">
+             <button type="submit" onClick={sendmsg} className="uk-button">
             Send msg
           </button>
        
